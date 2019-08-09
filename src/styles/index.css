@@ -1,0 +1,20 @@
+body {
+    background-color: #FC9227;
+    /*background-image: url('../images/background.jpg');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: cover;
+    background-size: cover;*/
+}
+
+
+.uct-logo {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    margin: 20%;
+}
