@@ -6,8 +6,6 @@ body {
     background-position: cover;
     background-size: cover;*/
 }
-
-
 .uct-logo {
     position: absolute;
 
@@ -18,3 +16,18 @@ body {
 
     margin: 20%;
 }
+
+/*#links {
+    display: inline-block;
+    width: 25%;
+    border: solid blue 1px;
+    /*background-color: green;
+}
+#sub-status {
+    /*display: inline-block;
+    width: 25%;
+    border: solid blue 1px;
+    /*margin-left: 100px;
+    margin-top: 2px;*/
+    /*background-color: greenyellow;
+}*/
