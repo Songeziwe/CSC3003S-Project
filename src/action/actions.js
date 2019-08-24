@@ -1,6 +1,13 @@
-const auth = () => {
+// Handle Login
+export const auth = (event) => {
     return {
-        type: 'LOG_IN'
+        type: 'LOGIN',
+        event
     }
 }
-export default auth;
+export const handleChange = (event) => {
+    return {
+        type: 'HANDLE_CHANGE',
+        event
+    }
+}
