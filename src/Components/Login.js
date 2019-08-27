@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {auth, handleChange} from '../action/actions';
+import {auth, handleChange} from '../Store/action/actions';
 
 const Login = (props) => {
     if(props.users[0].isLogged){

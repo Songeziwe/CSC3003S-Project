@@ -1,13 +1,13 @@
 const initState = {
     users:[
-        { username: "Zibondiwe", password: "@zibondiwe.com", isLogged: false}
+        { username: "Test", password: "1234", isLogged: false}
     ],
     username: "", 
     password: ""
 }
 
 // Reducer
-const rootReducer = (state = initState, action) => {
+const authReducer = (state = initState, action) => {
     switch(action.type){
         case 'LOGIN':
             const {event}  = action;
@@ -29,9 +29,8 @@ const rootReducer = (state = initState, action) => {
             }
         
         default:
-            console.log("Default");
             return state;
     }
 }
 
-export default rootReducer;
+export default authReducer;
