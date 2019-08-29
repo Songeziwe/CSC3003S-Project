@@ -1,33 +1,22 @@
 const initState = {
-    users:[
-        { username: "Test", password: "1234", isLogged: false}
-    ],
-    username: "", 
-    password: ""
+    authError: null
 }
 
 // Reducer
 const authReducer = (state = initState, action) => {
     switch(action.type){
-        case 'LOGIN':
-            const {event}  = action;
-            const array = [...state.users]; // make a copy of the array
-            event.preventDefault();
-            if(array[0].username === state.username && array[0].password === state.password){
-                array[0].isLogged = !array[0].isLogged;
-                console.log("Logged in successfully");
-                return {
-                    ...state,
-                    users: array
-                }
-            }
-            return state;
-        case 'HANDLE_CHANGE':
+        case 'LOGIN_SUCCESS':
             return {
                 ...state,
-                [action.event.target.name]: action.event.target.value
+                authError: null
             }
-        
+        case 'LOGIN_ERROR':
+            return {
+                ...state,
+                authError: 'Wrong email or password'
+            }
+        case 'SIGNOUT_SUCCESS':
+            return state;
         default:
             return state;
     }

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import personalReducer from './personalReducer';
-import authReducer from './authReducer';
+import formReducer         from './formReducer';
+import authReducer         from './authReducer';
+import { firebaseReducer } from 'react-redux-firebase'; // firebase information including authentication
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    personal: personalReducer
+    form: formReducer,
+    firebase: firebaseReducer
 });
 export default rootReducer;

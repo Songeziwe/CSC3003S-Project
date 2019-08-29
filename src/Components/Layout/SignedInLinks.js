@@ -1,19 +1,27 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authOut } from '../../Store/action/actions';
 
 // functional component
-const SingedInLinks = () => {
+const SingedInLinks = (props) => {
     return (
         <div className="signedInLinks">
             <ul className="right">
-                <li><NavLink to="/" className="black-text">Logout</NavLink></li>
+                <li><NavLink 
+                        to="/"
+                        onClick={props.signOut} 
+                        className="black-text">Logout</NavLink></li>
                 <li><NavLink 
                         to="/" 
-                        className="btn btn-floating blue darken-1"
-                    >IS</NavLink></li>
+                        className="btn btn-floating blue darken-1">IS</NavLink></li>
             </ul>
         </div>
     );
 }
-
-export default SingedInLinks;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOut: () => dispatch(authOut())
+    }
+}
+export default connect(null, mapDispatchToProps)(SingedInLinks);

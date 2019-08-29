@@ -1,9 +1,9 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom';
+import React          from 'react';
+import { NavLink }    from 'react-router-dom';
 import SignedOutLinks from './SignedOutLinks';
-import SignedInLinks from './SignedInLinks';
+import SignedInLinks  from './SignedInLinks';
+import { connect }    from 'react-redux';
 
-// functional component
 const Navbar = () => {
     return (
         <nav className="navbar transparent">
@@ -15,5 +15,10 @@ const Navbar = () => {
         </nav>
     );
 }
-
-export default Navbar;
+// State from the redux store
+const mapStateToProps = (state) => {
+    return {
+        
+    }
+}
+export default connect(mapStateToProps)(Navbar);
