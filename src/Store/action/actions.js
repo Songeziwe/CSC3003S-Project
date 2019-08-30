@@ -20,7 +20,7 @@ export const authOut = () => {
         const firebase = getFirebase();
 
         firebase.auth().signOut().then(() => {
-            dispatch({ type: 'SIGNOUT_SUCCESS' });
+            dispatch({ type: 'SIGNOUT_SUCCESS' }); // resume the dispatch
         });
     }
 }

@@ -4,13 +4,15 @@ import SignedOutLinks from './SignedOutLinks';
 import SignedInLinks  from './SignedInLinks';
 import { connect }    from 'react-redux';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const { isEmpty } = props.auth;  // destructuring
     return (
         <nav className="navbar transparent">
             <div className="nav-wrapper container">
-                <NavLink to="/" className="brand-logo black-text">Postgrad'Application</NavLink>
-                <SignedOutLinks /> 
-                <SignedInLinks />
+                <NavLink to={isEmpty ? "/":"/applicant"} className="brand-logo black-text">Postgrad'Application</NavLink>
+                {
+                    isEmpty ? <SignedOutLinks /> : <SignedInLinks /> // conditional randering
+                }  
             </div>
         </nav>
     );
@@ -18,7 +20,7 @@ const Navbar = () => {
 // State from the redux store
 const mapStateToProps = (state) => {
     return {
-        
+        auth: state.firebase.auth
     }
 }
 export default connect(mapStateToProps)(Navbar);

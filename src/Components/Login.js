@@ -18,6 +18,9 @@ class Login extends Component {
         this.props.signIn(this.state);
     }
     render() {
+        const {auth, history} = this.props;
+        if(!auth.isEmpty)
+            history.push("/applicant");
         return (
             <div className="login-section">
                 <form onSubmit={this.handleSubmit}>
@@ -33,7 +36,7 @@ class Login extends Component {
                                     value={this.state.email}
                                     onChange={this.handleChange} 
                                     type="text"/>
-                                <label>Student number</label>
+                                <label>Email</label>
                             </div>
                         </div>
                         <div className="row">
@@ -58,7 +61,8 @@ class Login extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 }
 const mapDispatchToProps = (dispatch) => {
