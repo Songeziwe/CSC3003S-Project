@@ -24,3 +24,14 @@ export const authOut = () => {
         });
     }
 }
+
+// ======== Create documents for this new user ============
+// create document for personal details
+export const  createPersonalDoc = (userId) => {
+    return (dispatch, getState, {getFirestore, getFirebase}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+
+        // have to create documents for the form with id equal to userId
+    }
+}

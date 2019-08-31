@@ -5,7 +5,6 @@ import { authOut } from '../../Store/action/actions';
 
 // functional component
 const SingedInLinks = (props) => {
-    console.log(props);
     return (
         <div className="signedInLinks">
             <ul className="right">

@@ -20,13 +20,14 @@ class Login extends Component {
     }
     render() {
 
-        const {auth, history} = this.props;
+        const {auth} = this.props;
         if(!auth.isEmpty){
             // direct user to another component
             // Before directing first make a dispatch
             // that will create user document on firestore
             // based on user id
             //history.push("/applicant");
+            console.log(this.props);
             return <Redirect to="/applicant"/>
         }
         return (
