@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import { auth } from '../Store/action/actions';
+import {connect}            from 'react-redux';
+import { auth }             from '../Store/action/actions';
+import { Redirect }         from 'react-router-dom';
 
 // Controlled compnent
 class Login extends Component {
@@ -19,8 +20,15 @@ class Login extends Component {
     }
     render() {
         const {auth, history} = this.props;
-        if(!auth.isEmpty)
-            history.push("/applicant");
+        if(!auth.isEmpty){
+            // direct user to another component
+            // Before directing first make a dispatch
+            // that will create user document on firestore
+            // based on user id
+            //history.push("/applicant");
+            return <Redirect to="/applicant"/>
+        }
+            
         return (
             <div className="login-section">
                 <form onSubmit={this.handleSubmit}>

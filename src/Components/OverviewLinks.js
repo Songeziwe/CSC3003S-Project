@@ -1,14 +1,15 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const OverviewLinks = () => {
     return (
             <span id="links" className="col lg6">
                 <ol>
-                    <li><a href="/personal">Personal Details</a></li>
-                    <li><a href="/residence">Residence Details</a></li>
-                    <li><a href="/degree">Degree Details</a></li>
-                    <li><a href="/document">Upload Document</a></li>
-                    <li><a href="/mit">MIT Details</a></li>
+                    <li><NavLink to="/personal">Personal Details</NavLink></li>
+                    <li><NavLink to="/residence">Residence Details</NavLink></li>
+                    <li><NavLink to="/degree">Degree Details</NavLink></li>
+                    <li><NavLink to="/document">Upload Document</NavLink></li>
+                    <li><NavLink to="/mit">MIT Details</NavLink></li>
                 </ol>
             </span>
     );
