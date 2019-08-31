@@ -1,7 +1,12 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom';
+import React        from 'react';
+import { connect }  from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const OverviewLinks = () => {
+
+const OverviewLinks = (props) => {
+    if ( props.auth.isEmpty )
+        return <Redirect to="/" />
     return (
             <span id="links" className="col lg6">
                 <ol>
@@ -15,4 +20,9 @@ const OverviewLinks = () => {
     );
 }
 
-export default OverviewLinks
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+export default connect(mapStateToProps)(OverviewLinks);

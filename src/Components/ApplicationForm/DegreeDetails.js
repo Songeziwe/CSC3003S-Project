@@ -1,6 +1,10 @@
-import React from 'react';
+import React        from 'react';
+import { connect }  from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-const Degree = () => {
+const Degree = (props) => {
+    if ( props.auth.isEmpty )
+        return <Redirect to = "/" />
     return (
         <div className="degree-details container">
             <h4 className="align-center">Degree Details</h4>
@@ -49,5 +53,9 @@ const Degree = () => {
         </div>
     );
 }
-
-export default Degree;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+export default connect(mapStateToProps)(Degree);

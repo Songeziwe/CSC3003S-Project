@@ -1,6 +1,10 @@
-import React from 'react';
+import React        from 'react';
+import { connect }  from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-const Residence = () => {
+const Residence = (props) => {
+    if ( props.auth.isEmpty )
+        return <Redirect to = "/" />
     return (
         <div className="residence-details container">
             <h4 className="align-center">Residence Details</h4>
@@ -25,5 +29,9 @@ const Residence = () => {
         </div>
     );
 }
-
-export default Residence;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+export default connect(mapStateToProps)(Residence);

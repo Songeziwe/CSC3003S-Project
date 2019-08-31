@@ -19,6 +19,7 @@ class Login extends Component {
         this.props.signIn(this.state);
     }
     render() {
+
         const {auth, history} = this.props;
         if(!auth.isEmpty){
             // direct user to another component
@@ -28,7 +29,6 @@ class Login extends Component {
             //history.push("/applicant");
             return <Redirect to="/applicant"/>
         }
-            
         return (
             <div className="login-section">
                 <form onSubmit={this.handleSubmit}>
