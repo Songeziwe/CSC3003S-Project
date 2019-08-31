@@ -17,6 +17,7 @@ const formReducer = (state = initState, action) => {
         console.log(action.details);
         const newLPersonal = [...state.personalDetails, action.details];
         console.log("sdss");
+        console.log("sdss");
         return {
             ...state,
             personalDetails: newLPersonal
