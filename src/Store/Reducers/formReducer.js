@@ -15,7 +15,12 @@ const initState = {
 const formReducer = (state = initState, action) => {
     if (action.type === 'CREATE_P_DETAILS'){
         console.log(action.details);
-        return state;
+        const newLPersonal = [...state.personalDetails, action.details];
+        console.log("sdss");
+        return {
+            ...state,
+            personalDetails: newLPersonal
+        };
     }
     return state;
 }
