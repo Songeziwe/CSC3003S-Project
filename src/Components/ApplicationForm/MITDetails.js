@@ -1,6 +1,10 @@
-import React from 'react';
+import React        from 'react';
+import { connect }  from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-const MIT = () => {
+const MIT = (props) => {
+    if ( props.auth.isEmpty )
+        return <Redirect to = "/" />
     return (
         <div className="mit-details container">
             { true ? (
@@ -57,5 +61,9 @@ const MIT = () => {
         </div>
     );
 }
-
-export default MIT;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+export default connect(mapStateToProps)(MIT);

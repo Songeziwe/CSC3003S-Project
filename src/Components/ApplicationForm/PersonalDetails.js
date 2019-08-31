@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {personalDetails} from '../../Store/action/addUserData';
+import { connect }          from 'react-redux';
+import {personalDetails}    from '../../Store/action/addUserData';
+import {Redirect}           from 'react-router-dom';
 
 class Personal extends Component {
     state = {
@@ -50,6 +51,9 @@ class Personal extends Component {
             console.log("Fields not complete");
     }
     render() {
+        // if user is not logged in
+        if ( this.props.auth.isEmpty )
+            return <Redirect to="/" />
         return (
             <div className="personal-details container">
                 <h4 className="align-center">Personal Details</h4>
@@ -114,9 +118,14 @@ class Personal extends Component {
     }
     
 }
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
 const MapDispatchToProps = ( dispatch ) => {
     return {
         createPersonal: (details) => dispatch(personalDetails(details))
     }
 }
-export default connect(null, MapDispatchToProps)(Personal);
+export default connect(mapStateToProps, MapDispatchToProps)(Personal);

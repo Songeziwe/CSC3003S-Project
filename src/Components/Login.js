@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import { auth } from '../Store/action/actions';
+import {connect}            from 'react-redux';
+import { auth }             from '../Store/action/actions';
+import { Redirect }         from 'react-router-dom';
 
 // Controlled compnent
 class Login extends Component {
@@ -18,9 +19,9 @@ class Login extends Component {
         this.props.signIn(this.state);
     }
     render() {
-        const {auth, history} = this.props;
+        const { auth } = this.props;
         if(!auth.isEmpty)
-            history.push("/applicant");
+            return <Redirect to = "/applicant" />
         return (
             <div className="login-section">
                 <form onSubmit={this.handleSubmit}>
