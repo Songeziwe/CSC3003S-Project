@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import {connect}             from 'react-redux';
 import { auth }              from '../Store/action/actions';
-import { createPersonalDoc } from '../Store/action/addUserData';
 import { Redirect }          from 'react-router-dom';
 
 // Controlled compnent
@@ -21,15 +20,8 @@ class Login extends Component {
     }
     render() {
 
-        const {auth, createPersonal} = this.props;
+        const { auth } = this.props;
         if(!auth.isEmpty){
-            // direct user to another component
-            // Before directing first make a dispatch
-            // that will create user document on firestore
-            // based on user id
-            //history.push("/applicant");
-            //console.log(this.props);
-            createPersonal();
             return <Redirect to="/applicant"/>
         }
         return (
@@ -79,7 +71,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         signIn : (creds) => {dispatch(auth(creds))},
-        createPersonal: () => { dispatch(createPersonalDoc()) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

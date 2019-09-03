@@ -1,76 +1,66 @@
-export const personalDetails = (details) => {
+export const personalDetails = (pDetails) => {
     return (dispatch, getState, { getFirestore, getFirebase }) => {
         // make async call to database i.e interact with the remote database (firestore)
         const firestore = getFirestore();          // refernce to the firestore database
-        firestore.collection("personalDetails").add({
-            ...details
-        }).then(() => {
-            dispatch({ type: 'CREATE_P_DETAILS', details });
-        }).catch((err) => {
-            // executed if an error is thrown
-            console.log(err);
-        });   
-        
-    }
-}
+        const firebase = getFirebase(); // to get user id from authentication
 
-// ======== Create documents for this new user ============
-// create document for personal details
-export const  createPersonalDoc = () => {
-    return (dispatch, getState, {getFirestore, getFirebase}) => {
-        const firebase = getFirebase();
-        const firestore = getFirestore();
-
-        // have to create documents for the form with id equal to userId
+        // CREATE DOCUMENT BASED ON USER'S ID FOR UNIQUENESS
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
                 // create personal details document for this user
                 firestore.collection("personalDetails").doc(user.uid).set({
-                    title      : "",
-                    name       : "",
-                    surname    : "",
-                    initials   : "",
-                    citizenship: "",
-                    currentCity: "",
-                    isComplete : false
-                }).then(() => console.log("PersonalDetailsDoc created"))
-                  .catch((err) => console.log(err));
-
-                // create residence details document for this user
-                firestore.collection("ResidenceDetails").doc(user.uid).set({
-                    city      : "",
-                    country   : "",
-                    isComplete: false
-                }).then(() => console.log("residenceDetailsDoc created"))
-                  .catch((err) => console.log(err));
-
-                // create degree details document for this user
-                firestore.collection("DegreeDetails").doc(user.uid).set({
-                    counrty         : "",
-                    degreeAppliedFor: "",
-                    degreeName      : "",
-                    NQFequivalent   :"",
-                    numberOfyears   : "",
-                    university      : "",
-                    isComplete      : false
-                }).then(() => console.log("degreeDetailsDoc created"))
-                  .catch((err) => console.log(err));
-
-                // create degree details document for this user
-                firestore.collection("MITDetails").doc(user.uid).set({
-                    title      : "",
-                    name       : "",
-                    surname    : "",
-                    citizenship: "",
-                    isMIT      : false,
-                }).then(() => console.log("MITDoc created"))
-                  .catch((err) => console.log(err));
+                    ...pDetails
+                }).then(() => dispatch({ type: 'CREATE_P_DETAILS', pDetails }))
+                  .catch((err) => console.log(err)); 
             }
-            else{
-                // User not logged in or has just logged out
-                console.log(user);
+        }); 
+    }
+}
+
+export const residenceDetails = (resDetails) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firebase  = getFirebase();
+        const firestore = getFirestore();
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user) {
+                firestore.collection("ResidenceDetails").doc(user.uid).set({
+                    ...resDetails
+                }).then(() => dispatch({ type: 'CREATE_RES_DETAILS', resDetails }))
+                  .catch((err) => console.log(err));
             }
         });
     }
 }
 
+export const degreeDetails = (dDetails) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firebase  = getFirebase();
+        const firestore = getFirestore();
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user) {
+                firestore.collection("DegreeDetails").doc(user.uid).set({
+                    ...dDetails
+                }).then(() => dispatch({ type: 'CREATE_D_DETAILS', dDetails }))
+                  .catch((err) => console.log(err));
+            }
+        });
+    }
+}
+
+export const mitDetails = (mitDetails) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firebase  = getFirebase();
+        const firestore = getFirestore();
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user) {
+                firestore.collection("MITDetails").doc(user.uid).set({
+                    ...mitDetails
+                }).then(() => dispatch({ type: 'CREATE_MIT_DETAILS', mitDetails }))
+                  .catch((err) => console.log(err));
+            }
+        });
+    }
+}
