@@ -1,5 +1,5 @@
-import React from 'react';
-import logo from '../images/UCT.svg';
+import React   from 'react';
+import logo    from '../images/UCT.svg';
 
 const Home = () => {
     return (

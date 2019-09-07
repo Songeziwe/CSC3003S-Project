@@ -9,7 +9,8 @@ export const personalDetails = (pDetails) => {
             if(user){
                 // create personal details document for this user
                 firestore.collection("personalDetails").doc(user.uid).set({
-                    ...pDetails
+                    ...pDetails,
+                    isApplicant: true
                 }).then(() => dispatch({ type: 'CREATE_P_DETAILS', pDetails }))
                   .catch((err) => console.log(err)); 
             }
@@ -25,7 +26,7 @@ export const residenceDetails = (resDetails) => {
         firebase.auth().onAuthStateChanged((user) => {
             if(user) {
                 firestore.collection("ResidenceDetails").doc(user.uid).set({
-                    ...resDetails
+                    ...resDetails,
                 }).then(() => dispatch({ type: 'CREATE_RES_DETAILS', resDetails }))
                   .catch((err) => console.log(err));
             }

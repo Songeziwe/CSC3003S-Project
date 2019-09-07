@@ -1,7 +1,9 @@
-import React, { Component }  from 'react';
-import {connect}             from 'react-redux';
-import { auth }              from '../Store/action/actions';
-import { Redirect }          from 'react-router-dom';
+import React, { Component } from 'react';
+import {connect}            from 'react-redux';
+import { auth }             from '../Store/action/actions';
+import { Redirect }         from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose }          from 'redux';
 
 // Controlled compnent
 class Login extends Component {
@@ -19,10 +21,17 @@ class Login extends Component {
         this.props.signIn(this.state);
     }
     render() {
-
-        const { auth } = this.props;
+        console.log(this.props);
+        const { auth, databasePersonalDetails } = this.props;
+        console.log(databasePersonalDetails);
         if(!auth.isEmpty){
-            return <Redirect to="/applicant"/>
+            const notApplicant = databasePersonalDetails.some((user) =>{
+                if( auth.uid === user.id && !user.isApplicant){
+                    return true;
+                }
+            });
+            return notApplicant ? <Redirect to="/home"/> : <Redirect to="/applicant"/>
+            //return <Redirect to="/applicant"/>
         }
         return (
             <div className="login-section">
@@ -65,7 +74,9 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     return {
         authError: state.auth.authError,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        staff: state.staff.user,
+        databasePersonalDetails: state.firestore.ordered.personalDetails
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -73,4 +84,9 @@ const mapDispatchToProps = (dispatch) => {
         signIn : (creds) => {dispatch(auth(creds))},
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        { collection: "personalDetails" }
+    ])
+)(Login);

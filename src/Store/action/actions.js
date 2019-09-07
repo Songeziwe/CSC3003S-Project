@@ -1,7 +1,8 @@
 // Handle Login
 export const auth = (credetials) => {
-    return (dispatch, getState, {getFirebase}) => {
-        const firebase = getFirebase(); // eccess firebase authentication service
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();   // eccess firebase authentication service
+        const firestore = getFirestore(); // eccess database service
         
         // let firebase signin the user
         firebase.auth().signInWithEmailAndPassword(

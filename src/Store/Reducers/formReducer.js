@@ -5,6 +5,7 @@ const initState = {
                 surname    : "",
                 citizenship: "",
                 currentCity: "",
+                isApplicant: true,
                 isComplete : false
             }],
         residenceDetails: [{ city: "", country: "", isComplete: false }],
@@ -25,7 +26,8 @@ const initState = {
             city       : "",  
             isMIT      : false,
             isComplete : false 
-        }],   
+        }],
+        user: ""   
 }
 // personal details reducer
 const formReducer = (state = initState, action) => {
