@@ -10,7 +10,7 @@ import Residence              from './ApplicationForm/ResidenceDetails';
 import Degree                 from './ApplicationForm/DegreeDetails';
 import Document               from './ApplicationForm/UploadDocument';
 import MIT                    from './ApplicationForm/MITDetails';
-import StaffHome              from './StaffMember/StaffHome'
+import StaffHome              from './StaffMember/StaffHome';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 function App() {
@@ -28,9 +28,9 @@ function App() {
         <div className="container">
           <div className="row">
             <Route path="/applicant" component={Buttons} />
-            <Route path="/home" component={StaffHome}/>
           </div>
         </div>
+        <Route path="/home" component={StaffHome}/>
         <Route path="/login" component={Login}/>
         <Route path="/personal" component={Personal}/>
         <Route path="/residence" component={Residence}/>

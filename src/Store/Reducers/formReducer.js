@@ -26,8 +26,7 @@ const initState = {
             city       : "",  
             isMIT      : false,
             isComplete : false 
-        }],
-        user: ""   
+        }],  
 }
 // personal details reducer
 const formReducer = (state = initState, action) => {

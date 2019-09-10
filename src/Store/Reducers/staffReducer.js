@@ -1,39 +1,19 @@
 const initState = {
-    personalDetails: [{
-            title      : "",
-            name       : "",
-            surname    : "",
-            citizenship: "",
-            currentCity: "",
-            isComplete : false
-        }],
-    residenceDetails: [{ city: "", country: "", isComplete: false }],
-    degreeDetails: [{ 
-            degreeName      : "", 
-            degreeAppliedFor: "",
-            university      : "",
-            numberOfYears   : "",
-            country         : "",
-            NQfequivalent   : "", 
-            isComplete      : false 
-        }],
-    mitDetails:[{
-        title      : "", 
-        name       : "", 
-        surname    : "",
-        citizenship: "",
-        city       : "",  
-        isMIT      : false,
-        isComplete : false 
-    }],
-    user: ""   
+    user: {
+        name: "",
+        surname: ""
+    }   
 }
 const staffReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'DETERMINE_USER':
+        case 'USER_LOOK_UP':
+            const array_details = action.details.split(" ");
+            console.log(array_details);
             return {
-                ...state,
-                user: action.user
+                user: {
+                    name: array_details[0],
+                    surname: array_details[1]
+                }
             }
     
         default:

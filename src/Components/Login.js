@@ -21,17 +21,17 @@ class Login extends Component {
         this.props.signIn(this.state);
     }
     render() {
-        console.log(this.props);
         const { auth, databasePersonalDetails } = this.props;
-        console.log(databasePersonalDetails);
+        console.log(this.props);
         if(!auth.isEmpty){
             const notApplicant = databasePersonalDetails.some((user) =>{
                 if( auth.uid === user.id && !user.isApplicant){
                     return true;
                 }
+                return false;
             });
+            console.log(notApplicant);
             return notApplicant ? <Redirect to="/home"/> : <Redirect to="/applicant"/>
-            //return <Redirect to="/applicant"/>
         }
         return (
             <div className="login-section">
